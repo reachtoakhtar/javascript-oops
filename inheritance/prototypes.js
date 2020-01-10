@@ -1,12 +1,15 @@
-// Every object (except the root object) has a prototype (parent). 
+let obj = {"name": "Akhtar"}
+
+// Every object (except the root object) has a prototype (parent).
 // To get the prototype of an object:
-Object.getPrototypeOf(obj); 
+let objectBase = Object.getPrototypeOf(obj);
+console.log(objectBase);
 
 // In Chrome, you can inspect "__proto__" property. But you should 
 // not use that in the code. 
 
 // To get the attributes of a property:
-Object.getOwnPropertyDescriptor(obj, 'propertyName');
+let descriptor = Object.getOwnPropertyDescriptor(obj, 'name');
 
 // To set the attributes for a property:
 Object.defineProperty(obj, 'propertyName', {
@@ -26,13 +29,36 @@ const x = {};
 const y = {};
 Object.getPrototypeOf(x) === Object.getPrototypeOf(y); // returns true 
 
-// Any changes to the prototype will be immediately visible to all objects 
-// referencing this prototype. 
+
+function Circle (radius) {
+  // Instance members
+  this.radius = radius
+
+  this.move = function () {
+    console.log("move");
+  }
+}
 
 // When dealing with large number of objects, it's better to put their
 // methods on their prototype. This way, a single instance of the methods
-// will be in the memory. 
-Circle.prototype.draw = function() {}
+// will be in the memory.
+
+// Prototype members
+Circle.prototype.draw = function() {
+  console.log("draw");
+}
+
+const c1 = new Circle(1)
+
+Circle.prototype.toString = function() {
+  return "Circle with radius " + this.radius
+}
+
+// Any changes to the prototype will be immediately visible to all objects
+// referencing this prototype.
+
+const c2 = new Circle(1)
+
 
 // To get the own/instance properties:
 Object.keys(obj);
