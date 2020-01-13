@@ -21,4 +21,4 @@ import {Square} from './square';
 // into code that browsers can understand (typically ES5). 
 
 // We use Webpack to combine our JavaScript files into a
-// bundle. 
+// bundle.
